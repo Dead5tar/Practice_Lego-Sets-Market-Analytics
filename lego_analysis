@@ -21,16 +21,30 @@ print(most_pieces)
 # EE.UU. (US_retailPrice) entre la cantidad de piezas (pieces).
 
 df_without_na = df.dropna(subset=['US_retailPrice', 'pieces']).copy()
+
+# Opcional pro: filtramos piezas mayores a 0 para evitar divisiones infinitas
+df_without_na = df_without_na[df_without_na['pieces'] > 0]
+
 df_without_na['price_per_piece'] = df_without_na['US_retailPrice'] / df_without_na['pieces']
 print("--- COLUMNA PRICE PER PIECE CREADA ---")
-print(df_without_na[['name', 'US_retailPrice', 'pieces', 'price_per_piece']].head())
+
+top_expensive_per_piece = df_without_na[
+['name', 'US_retailPrice', 'pieces', 'price_per_piece']
+].sort_values(by='price_per_piece', ascending=False)
+
+print('--- TOP 5 SETS MÁS CAROS POR CADA PIEZA ---')
+print(top_expensive_per_piece.head(5))
 
 # RETO 3: Agrupar los datos por la columna theme para descubrir cuáles son los 5 temas 
 # de LEGO que más cantidad de sets han lanzado en total a lo largo de los años.
 
-df_grouped = df.groupby('theme').size().reset_index(name='total_sets')
+df_grouped = df_without_na.groupby('theme').size().reset_index(name='total_sets')
 top_themes = df_grouped.sort_values(by='total_sets', ascending=False).head(5)
 print("--- TOP 5 TEMAS DE LEGO CON MÁS SETS LANZADOS ---")
 print(top_themes)
 
+# Comando para crear la base de datos limpia sin valores nulos en las 
+# columnas US_retailPrice y pieces (se ejecuta solo una vez para no 
+# sobreescribir el archivo)
 
+#df_without_na.to_csv('lego_sets_clean.csv', index=False)
