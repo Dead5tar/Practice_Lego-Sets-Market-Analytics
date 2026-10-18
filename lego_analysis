@@ -1,0 +1,32 @@
+import pandas as pd
+
+# 1. Cargar el Dataset (Asegúrate de cambiar el nombre del archivo si es distinto)
+# df = pd.read_csv('lego_sets.csv')
+
+# --- SIMULACIÓN DE DATOS (Para que puedas probar el script de inmediato) ---
+data = {
+    'set_name': ['Star Wars Ultimate', 'Classic Bricks', 'Technic Car', 'City Police', 'Marvel Heroes'],
+    'theme': ['Star Wars', 'Classic', 'Technic', 'City', 'Super Heroes'],
+    'year': [2020, 1985, 2021, 1995, 2022],
+    'pieces': [5000, 120, 1200, 300, 450],
+    'retail_price': [500.0, 15.0, 140.0, 35.0, 60.0]
+}
+df = pd.DataFrame(data)
+print("--- DATOS DE LEGO CARGADOS CORRECTAMENTE ---")
+print(df.head())
+
+# 2. RETO 1: Calcular el costo por pieza (Ingeniería de Características)
+# Fórmula: Precio dividido entre el número de piezas
+df['price_per_piece'] = df['retail_price'] / df['pieces']
+print("\n--- PRECIO POR PIEZA POR CADA SET ---")
+print(df[['set_name', 'retail_price', 'pieces', 'price_per_piece']])
+
+# 3. RETO 2: Agrupación por Tema (¿Cuál es el tema más costoso en promedio?)
+print("\n--- PRECIO PROMEDIO DE VENTA POR TEMA ---")
+theme_pricing = df.groupby('theme')['retail_price'].mean().reset_index()
+print(theme_pricing.sort_values(by='retail_price', ascending=False))
+
+# 4. RETO 3: Filtrar sets masivos (ej: más de 1000 piezas)
+print("\n--- SETS GIGANTES (MÁS DE 1000 PIEZAS) ---")
+giant_sets = df[df['pieces'] > 1000]
+print(giant_sets[['set_name', 'theme', 'pieces', 'retail_price']])
