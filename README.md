@@ -1,22 +1,25 @@
-# A LEGO Data Analysis con Pandas
+# A LEGO Sets Market & Pricing Analytics (Python & Power BI)
 
-## A Objetivo del proyecto
-Este repositorio contiene un script en Python diseñado para explorar, limpiar y analizar un conjunto de datos históricos de sets de LEGO. El objetivo de este proyecto es poner en práctica habilidades esenciales de manipulación de datos utilizando la librería **Pandas**.
+## A Resumen del Proyecto
+Este proyecto analiza el mercado histórico de los sets de LEGO utilizando **Python, Pandas y Power BI**. El objetivo principal es explorar la economía del juguete, evaluando la relación entre el precio de venta en EE.UU. (`US_retailPrice`), la cantidad de piezas (`pieces`), el costo por unidad de plástico (`price_per_piece`) y la evolución de los temas más populares a lo largo del tiempo.
 
-### A Retos Resueltos en el Proyecto
+### A Tecnologías y Herramientas Utilizadas
+* **Python & Pandas:** Limpieza de datos nulos, ingeniería de características (cálculo de precio por pieza) y exportación de datos optimizados.
+* **Power BI:** Diseño de un dashboard ejecutivo interactivo con KPIs, gráficos de dispersión avanzados y segmentación por categorías (*Slicers*).
+* **Business Intelligence (Retail):** Enfoque analítico enfocado en la visualización de valores atípicos (*outliers*) y comportamiento de precios en el mercado de juguetes.
 
-1. **Top 5 Sets con más piezas:** Identificación de los sets más grandes de la historia mediante ordenamiento avanzado.
-2. **Cálculo de Precio por Pieza:** Limpieza de valores nulos (`NaN`) en variables financieras y creación de una nueva métrica (`price_per_piece`).
-3. **Análisis de Popularidad por Temas:** Agrupación y conteo de datos para descubrir cuáles son las 5 franquicias o temas con más sets lanzados al mercado.
+### A Vista Previa del Dashboard (Power BI)
+*(Aquí puedes arrastrar o enlazar la captura de pantalla de tu dashboard)*
+![Dashboard de LEGO](ruta_de_tu_imagen/dashboard_preview.png)
 
-### A Tecnologías Utilizadas
+### A Componentes del Proyecto
+1. **`lego_sets.csv`**: Dataset original de Maven Analytics.
+2. **`lego_analysis.py`**: Script en Python encargado de procesar, limpiar y generar el archivo optimizado (`lego_sets_clean.csv`).
+3. **`lego_dashboard.pbix`**: Archivo fuente del reporte interactivo de Power BI.
 
-* **Python 3**
-* **Pandas** (Limpieza, filtrado, agregación y cálculo de datos)
+### Hallazgos Clave de Negocio
+* **Correlación de Escala:** El diagrama de dispersión demuestra cómo los precios escalan de forma no lineal en sets masivos de colección, aislando aquellas franquicias que demandan una inversión superior por parte del consumidor.
+* **Dominio de Franquicias:** Las líneas clásicas (*City*, *Star Wars* y *Duplo*) lideran ampliamente el volumen histórico de producción, marcando la pauta de rotación en el mercado retail.
 
-### A Cómo Ejecutar el Proyecto
-
-1. Clonar el repositorio.
-2. Asegúrate de tener el archivo `lego_sets.csv` en la raíz del proyecto.
-3. Instala Pandas: `pip install pandas`
-4. Ejecuta el script: `python tu_script.py`
+---
+*Desarrollado como parte del portafolio de análisis de datos e inteligencia de negocios.*
